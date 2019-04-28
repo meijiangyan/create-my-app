@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>react 学习之路</title>
+</head>
+
+<body>
+    <script>
+        var body = document.querySelector('body'),
+            newNode = null,
+            append = function(str) {
+                newNode = document.createElement("p");
+                newNode.innerHTML = str;
+                body.appendChild(newNode);
+            };
+
+        // history库
+        var historyModule = {
+                listener: [],
+                listen: function(listener) {
+                    this.listener.push(listener);
+                    append('historyModule listen.')
+                },
+                updateLocation: function() {
+                    append('historyModule updateLocation tirgger.');
+                    this.listener.forEach(function(listener) {
+                        listener('new localtion');
+                    })
+                }
+            }
+            // Router 将使用 historyModule 对象，并对其包装
+        var Router = {
+                source: {},
+                //复制historyModule到Router中
+                init: function(source) {
+                    this.source = source;
+                },
+                //处理监听事件，在Router对页面进行处理时，利用historyModule中处理页面
+                listen: function(listener) {
+                    append('Router listen.');
+                    // 对 historyModule的listen进行了一层包装
+                    return this.source.listen(function(location) {
+                        append('Router listen tirgger.');
+                        listener(location);
+                    })
+                }
+            }
+            // 将 historyModule 注入进 Router 中
+        Router.init(historyModule);
+        // Router 注册监听
+        Router.listen(function(location) {
+                append(location + '-> Router setState.');
+            })
+            // historyModule 触发监听回调(对页面进行渲染等处理)
+        historyModule.updateLocation();
+    </script>
+    <div id='root'></div>
+</body>
+<script>
+    async function a() {
+        await setTimeout(() => {
+            console.log('延迟3')
+        }, 300)
+    }
+
+    a();
+    //console.log('a=',a)
+</script>
+<script>
+    function setIn() {
+        if (timer) clearTimeout(timer);
+        var timer = setTimeout(() => {
+            //console.log(1);
+            setIn();
+        }, 1000)
+    }
+    // setIn();
+</script>
+<script>
+    function a(a) {
+        return function b(b) {
+            return a + b;
+        }
+    }
+    a(8)(6);
+</script>
+
+<script>
+</script>
+
+</html>
