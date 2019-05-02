@@ -12,11 +12,11 @@ export default class Hello extends React.Component {
       this.setState({
         name: 'aa' + 1
     });
-    console.log(this.state.name); //aa
+    //console.log(this.state.name); //aa
     this.setState({
         name: 'aa' + 1
     });
-    console.log(this.state.name); //aa
+    //console.log(this.state.name); //aa
   }
   render() {
     return <div>

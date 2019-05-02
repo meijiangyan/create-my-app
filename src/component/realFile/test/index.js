@@ -3,7 +3,7 @@ import React,{ Component } from 'react';
 
 export default class Foot extends Component{
     constructor(props){
-      console.log('constructor',0)
+      // console.log('constructor',0)
       super(props);
       this.state={
          id:0,
@@ -19,25 +19,25 @@ export default class Foot extends Component{
        *             shouldComponentUpdate(true) 6,3,7,4 (componentWillReceiveProps不会执行)
        */
     }
-    componentWillMount(){
-        console.log('willMount',1);
-    }
-    componentDidMount(){
-        console.log('didMount',2)
-    }
-    componentWillUpdate(){
-        console.log('willupdate,',3)
-    }
-    componentDidUpdate(){
-        console.log('didupdate',4)
-    }
+    // componentWillMount(){
+    //     console.log('willMount',1);
+    // }
+    // componentDidMount(){
+    //     console.log('didMount',2)
+    // }
+    // componentWillUpdate(){
+    //     console.log('willupdate,',3)
+    // }
+    // componentDidUpdate(){
+    //     console.log('didupdate',4)
+    // }
     
     componentWillReceiveProps(nextProps){
-        console.log('componentWillReceiveProps',5,'nextProps=',nextProps)
+        //console.log('componentWillReceiveProps',5,'nextProps=',nextProps)
     }
     shouldComponentUpdate(nextProps,nextState){
         // if(nextState.id===5) return false
-        console.log('shouldComponentUpdate',6,'nextProps=',nextProps,'nextState=',nextState)
+        //console.log('shouldComponentUpdate',6,'nextProps=',nextProps,'nextState=',nextState)
         return true;
     }
 
@@ -53,7 +53,7 @@ export default class Foot extends Component{
     }
     
     render(){
-        console.log('render',7);
+       // console.log('render',7);
         return(
             <div style={{cursor:'pointer'}} onClick={this.handleClickEvent}>
                <div>123{this.props.id}</div>
